@@ -4,9 +4,9 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
-import { createNewSale } from "./../../utils";
+import { createNewSale, getTodayDate } from "./../../utils";
 
-const CreateSaleComponent = ({placement}) => {
+const CreateSaleComponent = () => {
   const user = useSelector((state) => state.user);
  
   const [show, setShow] = useState(false);
@@ -22,6 +22,7 @@ const CreateSaleComponent = ({placement}) => {
     description: "",
     photo: "",
     userId: user.userId,
+    date: getTodayDate()
   });
 
   const handleSubmit = async (e) => {

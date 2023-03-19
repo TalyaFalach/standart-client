@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { DeleteSale } from "./../../utils";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
 
 function DeleteSaleComponent({ prodId }) {
  
-
-  const navigate = useNavigate();
   const [show, setShow] = useState(true);
+  useEffect(() => {
+   setShow(true)
+  }, [])
+  
 
   const handleCancel = () => {
-    setShow(!show);
+    setShow(false);
   };
   const handleDelete = async () => {
     console.log(prodId);
@@ -21,7 +22,7 @@ function DeleteSaleComponent({ prodId }) {
     setShow(!show);
   };
   return (
-    <>
+    <div>
       <Alert show={show} variant="danger">
         <span
           className="d-flex justify-content-end fw-bold"
@@ -40,7 +41,7 @@ function DeleteSaleComponent({ prodId }) {
           </Button>
         </div>
       </Alert>
-    </>
+    </div>
   );
 }
 

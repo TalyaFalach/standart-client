@@ -1,11 +1,22 @@
 import axios from "axios";
 const url = "http://localhost:8000";
 
-const getById = async (token, userId) => {
-  if (token) {
-    const { data } = await axios.get(`${url}/users/${userId}`);
-    return data;
-  }
+const getTodayDate = () => {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate();
+
+  if (dd < 10) dd = "0" + dd;
+  if (mm < 10) mm = "0" + mm;
+  const formattedToday = dd + "/" + mm + "/" + yyyy;
+
+  return formattedToday;
+};
+
+const getById = async (userId) => {
+  const { data } = await axios.get(`${url}/users/${userId}`);
+  return data;
 };
 
 const getUserPosts = async (token, userId) => {
@@ -39,9 +50,20 @@ const DeleteSale = async (prodId) => {
 };
 
 const EditSale = async (prodId, obj) => {
-  const { data } = await axios.patch(`${url}/sales/${prodId}`,obj);
+  const { data } = await axios.patch(`${url}/sales/${prodId}`, obj);
   return data;
 };
+
+const createNewComment = async (obj) => {
+  const res = await axios.post(`${url}/comments`, obj);
+  return res;
+};
+
+const getPostComments = async (postId) => {
+  const res = await axios.get(`${url}/comments/${postId}`);
+  return res;
+};
+
 
 export {
   getById,
@@ -52,4 +74,7 @@ export {
   createNewSale,
   DeleteSale,
   EditSale,
+  getTodayDate,
+  createNewComment,
+  getPostComments,
 };

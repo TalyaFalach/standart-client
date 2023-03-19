@@ -1,0 +1,15 @@
+.wrapper {
+  width: 100%;
+  overflow: scroll  ;
+  max-height:200px;
+
+  background: grey;
+  text-align: center;
+  transition:2s
+}
+
+/* @keyframes rotate {
+  to {
+    transform: rotate(20deg);
+  }
+} */

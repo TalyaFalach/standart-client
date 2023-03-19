@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { getAllSales } from "./../../utils";
 import NavBarLoginComponent from "../../Components/NavBarLogin/NavBarLoginComponent";
@@ -39,8 +39,8 @@ const SalesPage = () => {
       <Row>
         {sales.map((prod, index) => {
           return (
-            <Col sm={8}>
-              <SalesCardComponent key={index} prod={prod} />
+            <Col sm={5} className='mx-auto'>
+             <SalesCardComponent key={index} prod={prod} /> 
             </Col>
           );
         })}

@@ -3,11 +3,23 @@ import { Button, Card, Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CommentsComponent from "../CommentsComponent/CommentsComponent";
 import DeleteSaleComponent from "../DeleteSaleComponent/DeleteSaleComponent";
+import { getById } from "./../../utils";
 import EditSaleComponent from "../EditSaleComponent/EditSaleComponent";
 const SalesCardComponent = ({ prod }) => {
+  const [userProdData, setUserProdData] = useState({});
   const [isUserProduct, setIsUserProduct] = useState(false);
   const [deleteSale, setDeleteSale] = useState(false);
   const [editSale, setEditSale] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getById(prod.userId)
+        .then((data) => setUserProdData({ ...data.data.user }))
+        .catch((err) => console.log(err));
+    };
+    fetchData();
+    console.log("", userProdData);
+  }, []);
 
   const user = useSelector((state) => state.user);
   useEffect(() => {
@@ -19,60 +31,64 @@ const SalesCardComponent = ({ prod }) => {
 
   return (
     <div>
-      <div className="card shadow mt-3 mb-3 m-5">
-        <Row>
-          {prod.photo !== "" ? (
-            <Col sm={6}>
-              <img
-                className="card-img-top m-3"
-                src={prod.photo}
-                alt="Card  cap"
-                style={{ height: "200px" }}
-              />
-            </Col>
-          ) : null}
-          <Col>
-            {" "}
-            <div className="card-body">
-              <h4 className="card-title">{prod.productName}</h4>
-              <h6 className="card-text">Price: {prod.price}₪</h6>
-              <h6 className="card-text"> {prod.city}</h6>
-              <p className="card-text text-muted">
-                <small className="text-muted">{prod.description}</small>
-              </p>
-
-              <Card.Footer className="text-muted">
-                {prod?.firstName + " " + prod.lastName}
-                <br />
-                {prod.contact}
-              </Card.Footer>
-
-              {isUserProduct ? (
-                <>
-                  <Button
-                    variant="outline-light"
-                    className="text-primary"
-                    onClick={() => setEditSale(!editSale)}
-                  >
-                    Edit
-                  </Button>{" "}
-                  <Button
-                    className="text-danger"
-                    variant="outline-light"
-                    onClick={() => setDeleteSale(!deleteSale)}
-                  >
-                    Delete
-                  </Button>{" "}
-                </>
-              ) : null}
-            </div>
-          </Col>
-        </Row>
-        
+      <Card bg="light" className="shadow m-2 p-1">
         {deleteSale ? <DeleteSaleComponent prodId={prod._id} /> : null}
-        {editSale ? <EditSaleComponent prod={prod}  /> : null}
-        <Row><CommentsComponent/></Row>
-      </div>
+        {editSale ? <EditSaleComponent prod={prod} /> : null}
+        <div className="d-flex justify-content-around bd-highlight">
+          <div className="p-1 bd-highlight">
+            {isUserProduct ? (
+              <>
+                <Button
+                  className="text-primary btn btn-light"
+                  onClick={() => setEditSale(!editSale)}
+                >
+                  Edit
+                </Button>
+                <br />
+                <Button
+                  className="text-danger btn btn-light"
+                  onClick={() => setDeleteSale(!deleteSale)}
+                >
+                  Delete
+                </Button>{" "}
+              </>
+            ) : null}
+          </div>
+          <div className="p-1 bd-highlight display-6">
+            {prod.firstName + " " + prod.lastName}
+          </div>
+
+          <div className="p-1 ">
+            <img
+              src={userProdData.image}
+              class="rounded float-end rounded-circle"
+              alt="user"
+              style={{ height: "70px" }}
+            />
+          </div>
+        </div>
+
+        <div className="d-flex justify-content-center ">{prod.date}</div>
+        <hr />
+
+        <Card.Body>
+          <Card.Text>{prod.description}</Card.Text>
+          <h6> {" " + prod.city}</h6>
+        </Card.Body>
+        <div>
+          <Card.Img
+            style={{
+              maxHeight: "350px",
+
+              borderRadius: "9px",
+              padding: "2px",
+            }}
+            variant="bottom"
+            src={prod.photo}
+          />
+        </div>
+        <CommentsComponent prod={prod} />
+      </Card>
     </div>
   );
 };

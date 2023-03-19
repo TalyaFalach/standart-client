@@ -81,7 +81,7 @@ const CreateAccountPage = () => {
             <Col>
               <Form.Control
                 className="m-2"
-                type="email"
+                type="text"
                 placeholder="Image"
                 onChange={(e) =>
                   setNewUser({ ...newUser, image: e.target.value })

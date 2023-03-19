@@ -1,5 +1,6 @@
 
 import './App.css';
+import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from './Pages/LoginPage/LoginPage';
 import HomePage from './Pages/HomePage/HomePage';
@@ -11,11 +12,13 @@ import RecommendationsPage from './Pages/RecommendationsPage/RecommendationsPage
 import ArticleTipsPage from "./Pages/ArticleTipsPage/ArticleTipsPage";
 import MusicPage from "./Pages/MusicPage/MusicPage";
 import JobsPage from "./Pages/JobsPage/JobsPage";
+
  
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
