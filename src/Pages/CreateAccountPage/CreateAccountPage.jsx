@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import ErrorAlert from "../../Components/Alerts/ErrorAlert";
-import SuccessAlert from "../../Components/Alerts/SuccessAlert";
+import { toast } from "react-toastify";
 import NavBarComponent from "../../Components/NavBar/NavBarComponent";
-import { signUp } from "./../../utils";
+import { signUp, successToast, errorToast } from "./../../utils";
 const defaultUserImg =
   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png";
 
@@ -17,27 +16,18 @@ const CreateAccountPage = () => {
     password: "",
     confirmPassword: "",
   });
-  const [successAlert, setSuccessAlert] = useState(false);
-  const [errorAlert, setErrorAlert] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await signUp(newUser)
-    if(res.status ==="failed"){
-      setErrorAlert(!errorAlert);
-    }else if(res.status ==='success'){
-      setSuccessAlert(!successAlert);
-    }
-    
-
-      console.log(res.status);
+    await signUp(newUser)
+      .then(() => successToast(toast, "You are signed up! now login"))
+      .catch((err) => console.log(err))
+      .catch(() => errorToast(toast, "please check all fields and try again"));
   };
   return (
     <div>
       <NavBarComponent />
       <Container className="border w-75 mx-auto p-3 m-3">
-      {successAlert ? <SuccessAlert/> : null}
-      {errorAlert ? <ErrorAlert/>:null}
         <h1>Sign Up</h1>
         <form className="mx-auto p-4" onSubmit={handleSubmit}>
           <Row>

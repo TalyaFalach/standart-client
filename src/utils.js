@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 const url = "http://localhost:8000";
 
 const getTodayDate = () => {
@@ -61,9 +62,45 @@ const createNewComment = async (obj) => {
 
 const getPostComments = async (postId) => {
   const res = await axios.get(`${url}/comments/${postId}`);
+
   return res;
 };
 
+const addLike = async (path,postId, obj) => {
+  const res = await axios.patch(`${url}/${path}/${postId}/like`, obj);
+  return res;
+};
+const removeLike = async (path,postId,userId) => {
+  //unlike
+  const obj = {userId}
+  const res = await axios.patch(`${url}/${path}/${postId}/unlike`, obj);
+  return res; 
+};
+
+const successToast = (toast, message) => {
+  return toast.success(`${message}`, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+const errorToast = (toast, message) => {
+  return toast.error(`${message}`, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
 
 export {
   getById,
@@ -77,4 +114,8 @@ export {
   getTodayDate,
   createNewComment,
   getPostComments,
+  successToast,
+  errorToast,
+  addLike,
+  removeLike
 };

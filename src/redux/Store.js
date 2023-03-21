@@ -11,6 +11,9 @@ const setUser = (state = initialUser, action) => {
     case "SET_SALES": {
       return { ...state, sales:  [...action.payload]  };
     }
+    case "COUNT_LIKES": {
+      return { ...state, sales:  [...action.payload]  };
+    }
 
     default:
       return state;

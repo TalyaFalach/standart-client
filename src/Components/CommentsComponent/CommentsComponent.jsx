@@ -2,12 +2,17 @@ import { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import LikeIconComponent from "../../Icons/LikeComponent/LikeComponent";
-import { createNewComment, getTodayDate } from "./../../utils";
+import {
+  createNewComment,
+  getTodayDate,
+  successToast,
+  errorToast,
+} from "./../../utils";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ShowCommentsComponent from "../ShowCommentsComponent/ShowCommentsComponent";
 
-const CommentsComponent = ({ prod }) => {
+const CommentsComponent = ({ prod ,path}) => {
   const user = useSelector((state) => state.user);
   const [isLike, setIsLike] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -16,35 +21,17 @@ const CommentsComponent = ({ prod }) => {
   const handleNewComment = async () => {
     const obj = {
       userId: user.userId,
+      userFirstName: user.firstName,
+      userLastName: user.lastName,
+      userImage: user.image,
       comment: newComment,
       postId: prod._id,
       date: getTodayDate(),
     };
     await createNewComment(obj)
-      .then(() => {
-        toast.success("Your comment has been added", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      })
-      .catch(() => {
-        toast.error("Oops, please try again", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      });
+      .then(() => successToast(toast, "Your Comment has been added"))
+      .then(() => setNewComment(""))
+      .catch(() => errorToast(toast, "Pleast try again"));
   };
 
   return (
@@ -53,7 +40,9 @@ const CommentsComponent = ({ prod }) => {
       <Row>
         <Col sm={3}>
           <LikeIconComponent
-           
+            post={prod}
+            postId={prod._id}
+            path={path}
             onClick={() => setIsLike(!isLike)}
           />
         </Col>
@@ -77,13 +66,11 @@ const CommentsComponent = ({ prod }) => {
       <div
         style={{ cursor: "pointer" }}
         onClick={() => setShowComments(!showComments)}
-        className="fw-bolder text-primary animated flash"
+        className="fw-bolder text-primary animated flash m-4"
       >
         Show All Comments
       </div>
-      {showComments ? (
-        <ShowCommentsComponent userId={prod.userId} postId={prod._id} />
-      ) : null}
+      {showComments ? <ShowCommentsComponent postId={prod._id} /> : null}
     </div>
   );
 };

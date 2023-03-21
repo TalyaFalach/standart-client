@@ -4,17 +4,24 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
-import { createNewSale, getTodayDate } from "./../../utils";
+import {
+  createNewSale,
+  getTodayDate,
+  successToast,
+  errorToast,
+} from "./../../utils";
+import { toast } from "react-toastify";
 
 const CreateSaleComponent = () => {
   const user = useSelector((state) => state.user);
- 
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [product, setProduct] = useState({
     firstName: user.firstName,
     lastName: user.lastName,
+    category: "Guitar",
     city: "",
     productName: "",
     price: "",
@@ -22,25 +29,22 @@ const CreateSaleComponent = () => {
     description: "",
     photo: "",
     userId: user.userId,
-    date: getTodayDate()
+    date: getTodayDate(),
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createNewSale(product)
-      .then(() => alert("created"))
-      .catch(() => alert("Oops, please try again"));
-
-   
+      .then(() => successToast(toast, "created"))
+      .catch(() => errorToast(toast, "Oops, please try again"));
   };
   return (
     <>
       <Button style={{ backgroundColor: "purple" }} onClick={handleShow}>
         + Create Sale
       </Button>
-      
 
-      <Offcanvas show={show} placement='end' onHide={handleClose}>
+      <Offcanvas show={show} placement="end" onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Hello, {user.firstName}</Offcanvas.Title>
         </Offcanvas.Header>
@@ -48,7 +52,6 @@ const CreateSaleComponent = () => {
           This is the place to upload a product for sale, make sure you have
           filled in all the fields correctly
           <form className="p-2" onSubmit={handleSubmit}>
-           
             <br />
             <input
               type="text"
@@ -67,10 +70,6 @@ const CreateSaleComponent = () => {
               className="m-1"
               placeholder="Price"
             />{" "}
-            <select>
-              <option>$</option>
-              <option>₪</option>
-            </select>
             <br />
             <input
               onChange={(e) =>
@@ -97,6 +96,19 @@ const CreateSaleComponent = () => {
               placeholder="City (Not required)"
             />{" "}
             <br />
+            <select
+              defaultValue="Guitar"
+              onChange={(e) =>
+                setProduct({ ...product, category: e.target.value })
+              }
+            >
+              <option value="Keyboards">Keyboards</option>
+              <option value="Guitar">Guitar</option>
+              <option value="Bass">Bass</option>
+              <option value="Drums / percussions">Drums / percussions</option>
+              <option value="Wind">Wind</option>
+            </select>{" "}
+            <br />
             <FloatingLabel
               controlId="floatingTextarea"
               label="Write a description"
@@ -111,9 +123,6 @@ const CreateSaleComponent = () => {
                 className="m-1"
               />
             </FloatingLabel>
-            {/* 
-              userId
-            */}
             <Button type="submit">Continue</Button>
           </form>
         </Offcanvas.Body>

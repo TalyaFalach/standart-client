@@ -23,10 +23,13 @@ const LoginPage = () => {
   return (
     <div className="h-100">
       <NavBarComponent />
-      talyafalach@gmail.com
-      <div className="h-100 bg-light container mt-4">
+     talyafalach@gmail.com 
+
+      <hr className="w-50 mx-auto" />
+      <div className="display-4 mt-2 ">Welcome Back</div>
+      <hr className="w-50 mx-auto" />
+      <div className="h-100 bg-light container mt-3">
         <Card style={{ maxWidth: "75%" }} className="mx-auto shadow mt-5 mb-3">
-          <Card.Header className="h5">Welcome Back!</Card.Header>
           <Card.Body>
             <form className="mt-3" onSubmit={handleSubmit}>
               <Form.Control

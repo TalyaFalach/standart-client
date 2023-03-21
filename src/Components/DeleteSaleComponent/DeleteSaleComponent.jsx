@@ -23,7 +23,7 @@ function DeleteSaleComponent({ prodId }) {
   };
   return (
     <div>
-      <Alert show={show} variant="danger">
+      <Alert show={show} variant="">
         <span
           className="d-flex justify-content-end fw-bold"
           style={{ cursor: "pointer" }}
@@ -31,7 +31,7 @@ function DeleteSaleComponent({ prodId }) {
         >
           X
         </span>
-        <Alert.Heading>Are You Sure ?</Alert.Heading>
+        <h5>Are You Sure ?</h5>
        
         <hr />
 

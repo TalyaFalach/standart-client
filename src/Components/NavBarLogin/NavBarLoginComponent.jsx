@@ -12,7 +12,7 @@ const NavBarLoginComponent = () => {
     navigate("/");
   };
   return (
-    <Container className="">
+    <>
       <Navbar bg="light" expand="lg" className="container">
         <Navbar.Brand
           style={{ cursor: "pointer" }}
@@ -46,7 +46,8 @@ const NavBarLoginComponent = () => {
           />
         </div>
       </Navbar>
-    </Container>
+      <hr />
+    </>
   );
 };
 

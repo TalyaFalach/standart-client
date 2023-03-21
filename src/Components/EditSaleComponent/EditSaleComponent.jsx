@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { EditSale } from "./../../utils";
+import { EditSale, successToast, errorToast } from "./../../utils";
 import "./EditSaleComponent.css";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-
+import { toast } from "react-toastify";
 
 const EditSaleComponent = ({ prod }) => {
- 
   const [initialProd, setInitialProd] = useState({
     photo: prod.photo,
     contact: prod.contact,
@@ -22,14 +21,14 @@ const EditSaleComponent = ({ prod }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-   await EditSale(prod._id, initialProd)
-      .then(() => alert("Updated!"))
-      .catch(() => alert("oops, please try again"));
+    await EditSale(prod._id, initialProd)
+      .then(() => successToast(toast, "Updated!"))
+      .catch(() => errorToast(toast, "Please try again"));
   };
 
   return (
     <form onSubmit={handleSubmit} className="p-3">
-      <Alert show={show} variant="primary">
+      <Alert show={show} variant="">
         <h5>Edit Your Post Here</h5>
         <span
           onClick={handleCancel}
