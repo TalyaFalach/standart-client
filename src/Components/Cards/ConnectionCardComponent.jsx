@@ -5,14 +5,17 @@ import Card from "react-bootstrap/Card";
 
 const ConnectionCardComponent = () => {
   return (
-    <div className="my-card">
+    <div className="my-card hover">
       {" "}
-      <Card className="bg-dark text-white hover m-2" style={{ height: "300" }}>
+      <Card
+        className="bg-dark text-white"
+        style={{ height: "300" }}
+      >
         <Card.Img
-          className="opacity-50"
+          className="opacity-50 w-100 bg-dark"
           src={connectionImg}
           alt="Card image"
-          style={{ height: "300" }}
+          style={{ height: "48vh" }}
         />
         <Card.ImgOverlay>
           <Card.Title className="fs-3 fw-lighter mx-auto">

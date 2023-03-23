@@ -45,10 +45,15 @@ const createNewSale = async (obj) => {
   return data;
 };
 
-const DeleteSale = async (prodId) => {
-  const { data } = await axios.delete(`${url}/sales/${prodId}`);
+const deletePost= async (path,postId) => {
+  const { data } = await axios.delete(`${url}/${path}/${postId}`);
   return data;
 };
+
+const editPost = async (path,postId,obj)=>{
+  const res = await axios.patch(`${url}/${path}/${postId}`,obj)
+   return res;
+}
 
 const EditSale = async (prodId, obj) => {
   const { data } = await axios.patch(`${url}/sales/${prodId}`, obj);
@@ -66,15 +71,20 @@ const getPostComments = async (postId) => {
   return res;
 };
 
-const addLike = async (path,postId, obj) => {
+const addLike = async (path, postId, obj) => {
   const res = await axios.patch(`${url}/${path}/${postId}/like`, obj);
   return res;
 };
-const removeLike = async (path,postId,userId) => {
+const removeLike = async (path, postId, userId) => {
   //unlike
-  const obj = {userId}
+  const obj = { userId };
   const res = await axios.patch(`${url}/${path}/${postId}/unlike`, obj);
-  return res; 
+  return res;
+};
+
+const getAll = async (path) => {
+  const res = await axios.get(`${url}/${path}`);
+  return res;
 };
 
 const successToast = (toast, message) => {
@@ -102,6 +112,11 @@ const errorToast = (toast, message) => {
   });
 };
 
+const createNewArticle = async (obj) => {
+  const res = await axios.post(`${url}/articles`, obj);
+  return res;
+};
+
 export {
   getById,
   getUserPosts,
@@ -109,7 +124,7 @@ export {
   signUp,
   getAllSales,
   createNewSale,
-  DeleteSale,
+  deletePost,
   EditSale,
   getTodayDate,
   createNewComment,
@@ -117,5 +132,8 @@ export {
   successToast,
   errorToast,
   addLike,
-  removeLike
+  removeLike,
+  getAll,
+  createNewArticle,
+  editPost,
 };

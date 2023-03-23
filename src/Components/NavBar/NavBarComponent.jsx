@@ -7,9 +7,9 @@ const NavBarComponent = () => {
 
 const navigate = useNavigate()  
   return (
-    <Navbar className="text-light my-bg">
+    <Navbar className="bg-dark text-light my-bg">
       <Container>
-        <h4 style={{cursor:'pointer'}} onClick={()=>navigate('/')}>Welcome</h4>
+        <div className="fw-lighter lead" style={{cursor:'pointer'}} onClick={()=>navigate('/')}>STANDART</div>
 
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
@@ -27,6 +27,7 @@ const navigate = useNavigate()
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
+     
     </Navbar>
   );
 };

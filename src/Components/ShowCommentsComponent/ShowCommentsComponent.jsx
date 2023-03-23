@@ -19,6 +19,7 @@ console.log(postId);
 
   return (
     <>
+    <hr/>
       {comments.length > 0 ? (
         <ListGroup variant="flush" className="wrapper border-danger bg-light">
           {" "}

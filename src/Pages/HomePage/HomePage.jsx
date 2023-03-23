@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import NavBarComponent from "../../Components/NavBar/NavBarComponent";
 import Card1 from "../../Components/Cards/ConnectionCardComponent";
 import Card2 from "../../Components/Cards/RecommendationsCardComponent";
@@ -8,27 +8,22 @@ import Card4 from "../../Components/Cards/ShareCardComponent";
 import React from "react";
 import img from "./../../Images/kahal2.jpg";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import LoginPage from "../LoginPage/LoginPage";
+
 
 function HomePage() {
-  
-
   return (
-    <div style={{ backgroundColor: "black" }}>
+    <div className="bg-dark">
       <Container fluid className="p-0">
         <Row noGutters>
           <Col xs={12}>
             <div className="position-relative" style={{ height: "100vh" }}>
-              <div
-                bg="dark"
-                style={{ height: "90px", backgroundColor: "black" }}
-              >
+              <div bg="dark" style={{ height: "90px" }}>
                 <NavBarComponent />
               </div>
               <img
                 src={img}
                 alt="example"
-                className="w-100"
+                className="w-100 h-100"
                 style={{ opacity: 0.7 }}
               />
               <div className="position-absolute top-50 start-50 translate-middle text-center">
@@ -36,7 +31,7 @@ function HomePage() {
                 <h3 className="display-6 text-light  ">
                   A social network for musicians
                 </h3>{" "}
-                <p className="text-light">
+                <p className="fw-lighter text-light lead">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Quisquam veritatis vero nobis maiores facere! Fuga accusantium
                   voluptatum adipisci distinctio deserunt?
@@ -45,17 +40,17 @@ function HomePage() {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col sm={6}>
+        <Row style={{backgroundColor:"black"}}>
+          <Col sm={3}>
             <Card1 />
           </Col>
-          <Col sm={6}>
+          <Col sm={3}>
             <Card2 />
           </Col>
-          <Col sm={6}>
+          <Col sm={3}>
             <Card3 />
           </Col>
-          <Col sm={6}>
+          <Col sm={3}>
             <Card4 />
           </Col>
         </Row>

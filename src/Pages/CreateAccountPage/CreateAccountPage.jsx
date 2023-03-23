@@ -25,9 +25,11 @@ const CreateAccountPage = () => {
       .catch(() => errorToast(toast, "please check all fields and try again"));
   };
   return (
-    <div>
+    <div className="bg-dark">
       <NavBarComponent />
-      <Container className="border w-75 mx-auto p-3 m-3">
+      <hr className=" mx-auto text-light"  />
+      <hr bg="light" />
+      <Container className="bg-dark  text-light border rounded w-75 mx-auto p-3 m-3">
         <h1>Sign Up</h1>
         <form className="mx-auto p-4" onSubmit={handleSubmit}>
           <Row>

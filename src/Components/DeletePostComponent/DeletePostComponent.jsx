@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { DeleteSale } from "./../../utils";
+import { deletePost } from "../../utils";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 
-function DeleteSaleComponent({ prodId }) {
- 
+function DeletePostComponent({path, postId }) {
   const [show, setShow] = useState(true);
   useEffect(() => {
-   setShow(true)
-  }, [])
-  
+    setShow(true);
+  }, []);
 
   const handleCancel = () => {
     setShow(false);
   };
   const handleDelete = async () => {
-    console.log(prodId);
-    await DeleteSale(prodId)
+    console.log(postId);
+    await deletePost(path,postId)
       .then(() => alert("The post has been deleted"))
       .catch(() => alert("oops, somethong went wrong"));
     setShow(!show);
@@ -32,7 +30,7 @@ function DeleteSaleComponent({ prodId }) {
           X
         </span>
         <h5>Are You Sure ?</h5>
-       
+
         <hr />
 
         <div className="">
@@ -45,4 +43,4 @@ function DeleteSaleComponent({ prodId }) {
   );
 }
 
-export default DeleteSaleComponent;
+export default DeletePostComponent;

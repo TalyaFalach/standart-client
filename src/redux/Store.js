@@ -1,6 +1,7 @@
 const initialUser = {
   user: { firstName: "", lastName: "", userId: "", image: "" },
-  sales:[]
+  sales:[],
+  category:["Keyboards", "Guitar","Bass","Drums / Percussions","Wind"]
 };
 
 const setUser = (state = initialUser, action) => {

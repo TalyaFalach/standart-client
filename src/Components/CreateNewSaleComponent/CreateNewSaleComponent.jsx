@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 
 const CreateSaleComponent = () => {
   const user = useSelector((state) => state.user);
+  const category = useSelector((state) => state.category);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -97,17 +98,22 @@ const CreateSaleComponent = () => {
             />{" "}
             <br />
             <select
-              defaultValue="Guitar"
+              defaultValue="category"
               onChange={(e) =>
                 setProduct({ ...product, category: e.target.value })
               }
             >
-              <option value="Keyboards">Keyboards</option>
-              <option value="Guitar">Guitar</option>
-              <option value="Bass">Bass</option>
-              <option value="Drums / percussions">Drums / percussions</option>
-              <option value="Wind">Wind</option>
-            </select>{" "}
+              <option disabled value="category">
+                category
+              </option>
+              {category.map((c, index) => {
+                return (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
             <br />
             <FloatingLabel
               controlId="floatingTextarea"

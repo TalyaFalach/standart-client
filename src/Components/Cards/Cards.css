@@ -1,11 +1,13 @@
-.hover:hover{
- box-shadow: 1px 1px 5px 2px rgba(100, 100, 100, 0.7);
- transition: 0.4ms;
- font-weight: 700;
- font-size: 2rem;
- 
+.hover:hover {
+  /* box-shadow: 1px 1px 5px 2px rgba(100, 100, 100, 0.7); */
+  transition: 0.8s;
+  font-weight: 700;
+  font-size: 3rem;
+  color: red;
 }
 
-.my-card{
-   height: 300px;
+.my-card {
+  height: 300px;
+  background-color: #000;
 }
+

@@ -5,17 +5,17 @@ import "./Cards.css";
 
 const SaleCardComponent = () => {
   return (
-    <div className="my-card">
+    <div className="my-card ">
       {" "}
       <Card
-        className="bg-dark text-white hover m-2"
+        className="bg-dark text-white hover"
         style={{ height: "300px" }}
       >
         <Card.Img
-          className="opacity-50"
+          className="opacity-50 w-100 bg-dark"
           src={saleImg}
           alt="Card image"
-          style={{ height: "300px" }}
+          style={{ height: "48vh" }}
         />
         <Card.ImgOverlay>
           <Card.Title className="fs-3 fw-lighter mx-auto">

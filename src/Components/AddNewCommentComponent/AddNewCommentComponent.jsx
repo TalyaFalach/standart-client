@@ -13,8 +13,10 @@ const AddNewCommentComponent = ({ postId }) => {
   const [newComment, setNewComment] = useState("");
 
   const handleNewComment = async () => {
-    if (user.userId === "" || user.firstName === "" || user.lastName === "" ||newComment==="") {
+    if (user.userId === "" || user.firstName === "" || user.lastName === "" ) {
       return errorToast(toast, "You are not logged in");
+    }else if(newComment===""){
+      return errorToast(toast, "Can not send an empty comment");
     }
     const obj = {
       userId: user.userId,
@@ -33,9 +35,9 @@ const AddNewCommentComponent = ({ postId }) => {
     <>
       <input
         placeholder="Add Comment"
-        onChange={(e) => setNewComment(e.target.value)}
+        onChange={(e) => setNewComment(e.target.value)} className="mb-3"
       />{" "}
-      <button className="btn-light btn" onClick={handleNewComment}>
+      <button className="btn-success btn" onClick={handleNewComment}>
         Send
       </button>
     </>

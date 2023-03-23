@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import { Card, Col, NavDropdown, Row, Stack } from "react-bootstrap";
-import "./SalesCardComponent.css";
 import { useSelector } from "react-redux";
-import "./SalesCardComponent.css";
-import DeleteSaleComponent from "../DeleteSaleComponent/DeleteSaleComponent";
 import { getById } from "./../../utils";
 import EditSaleComponent from "../EditSaleComponent/EditSaleComponent";
-import CurrentPostComponent from "../CurrentPostComponent/CurrentPostComponent";
+import CurrentPostComponent from "../CurrentPostCommentsComponent/CurrentPostCommentsComponent";
 import AddNewCommentComponent from "../AddNewCommentComponent/AddNewCommentComponent";
+import DeletePostComponent from "../DeletePostComponent/DeletePostComponent";
 
 const SalesCardComponent = ({ prod, isOpen }) => {
+  const user = useSelector((state) => state.user);
   const [userProdData, setUserProdData] = useState({});
   const [isUserProduct, setIsUserProduct] = useState(false);
   const [deleteSale, setDeleteSale] = useState(false);
   const [editSale, setEditSale] = useState(false);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +23,6 @@ const SalesCardComponent = ({ prod, isOpen }) => {
     fetchData();
   }, []);
 
-  const user = useSelector((state) => state.user);
   useEffect(() => {
     if (prod.userId === user.userId) {
       setIsUserProduct(true);
@@ -33,10 +30,8 @@ const SalesCardComponent = ({ prod, isOpen }) => {
     }
   }, []);
 
-
-
   return (
-    <Card className="text-center container mt-5 bg-dark text-light  shadow-lg">
+    <Card className="text-center container mt-5 bg-dark text-light fw-lighter  shadow-lg">
       <Row>
         <Card.Header>
           <Stack direction="horizontal" gap={4}>
@@ -84,7 +79,7 @@ const SalesCardComponent = ({ prod, isOpen }) => {
           />
         </Col>
         <Col>
-          {deleteSale ? <DeleteSaleComponent prodId={prod._id} /> : null}
+          {deleteSale ? <DeletePostComponent postId={prod._id} /> : null}
           <Card.Body>
             {editSale ? <EditSaleComponent prod={prod} /> : null}
             <Card.Title>

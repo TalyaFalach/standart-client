@@ -3,13 +3,12 @@ import { Card } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ShowCommentsComponent from "../ShowCommentsComponent/ShowCommentsComponent";
-import { getPostComments } from "./../../utils";
+import { getPostComments } from "../../utils";
 
 const CurrentPostComponent = ({ postId, image }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
 
   return (
     <>
@@ -28,7 +27,7 @@ const CurrentPostComponent = ({ postId, image }) => {
           <Modal.Title>Comments</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Card >
+          <Card>
             <Card.Img variant="top" src={image} />
             <Card.Body>
               <Card.Title></Card.Title>
@@ -38,12 +37,9 @@ const CurrentPostComponent = ({ postId, image }) => {
             </Card.Body>
           </Card>
         </Modal.Body>
-       
       </Modal>
     </>
   );
 };
 
 export default CurrentPostComponent;
-
-
