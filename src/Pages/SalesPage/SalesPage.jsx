@@ -11,7 +11,7 @@ const SalesPage = () => {
   const [filteredSales, setFilteredSales] = useState([]);
   const dispatch = useDispatch();
   const sales = useSelector((state) => state.sales);
-  const category = useSelector((state) => state.category);
+  const salesCategory = useSelector((state) => state.salesCategory);
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
@@ -50,7 +50,7 @@ const SalesPage = () => {
         <Col sm={6}>
           <Form.Select size="l" onChange={handleSearch}>
             <option defaultValue="All">All</option>
-            {category.map((c, index) => {
+            {salesCategory.map((c, index) => {
               return (
                 <option key={index} value={c}>
                   {c}
@@ -70,8 +70,8 @@ const SalesPage = () => {
           <div>
             {filteredSales.map((prod, index) => {
               return (
-                <Col sm={10} className="mx-auto">
-                  <SalesCardComponent key={index} prod={prod} />
+                <Col sm={10} key={index} className="mx-auto">
+                  <SalesCardComponent prod={prod} />
                 </Col>
               );
             })}
@@ -80,8 +80,8 @@ const SalesPage = () => {
           <div>
             {sales.map((prod, index) => {
               return (
-                <Col sm={10} className="mx-auto">
-                  <SalesCardComponent key={index} prod={prod} />
+                <Col sm={10} key={index} className="mx-auto">
+                  <SalesCardComponent prod={prod} />
                 </Col>
               );
             })}

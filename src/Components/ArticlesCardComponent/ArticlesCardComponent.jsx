@@ -21,11 +21,11 @@ const ArticlesCardComponent = ({ article }) => {
   }, []);
   return (
     <div className="p-5  fw-lighter">
-      <Card className="p-3 bg-dark text-light" style={{ width: "25rem" }}>
+      <Card className="p-3 bg-dark text-light" style={{ width: "20rem" }}>
       {editPost ? <EditArticleComponent article={article}/>:null}
         <Stack direction="horizontal" gap={4}>
           <div className="">{article.date}</div>
-          {/* <div className="fw-bold ms-auto"></div> */}
+         
           <div className="fw-bold ms-auto">
             {isUserPost ? (
               <NavDropdown
@@ -48,7 +48,7 @@ const ArticlesCardComponent = ({ article }) => {
             ) : null}
           </div>
 
-          <div className="fw-bold ms-auto">
+          <div className=" ms-auto">
             {article.userFirstName + " " + article.userLastName}
           </div>
           <div>
@@ -61,18 +61,16 @@ const ArticlesCardComponent = ({ article }) => {
           </div>
           <hr />
         </Stack>
-        {article.image ? (
-          <Card.Img variant="top" src="holder.js/100px180" />
-        ) : null}
-        {deletePost ? <DeletePostComponent postId={article._id} /> : null}
+      
+        {deletePost ? <DeletePostComponent postId={article._id} path="articles" /> : null}
 
         <Card.Body className="fw-lighter">
           <Card.Title>{article.title}</Card.Title>
           <Card.Text style={{ whiteSpace: "pre-wrap" }}>
-            {article.text.split(/\s+/).slice(0, 20).join(" ")}....
+            {article.text.split(/\s+/).slice(0, 10).join(" ")}....
           </Card.Text>
 
-          <CurrentFullPostComponent post={article} postId={article._id} />
+          <CurrentFullPostComponent image={article.image} post={article} postId={article._id} />
         </Card.Body>
         <AddNewCommentComponent postId={article._id} />
       </Card>

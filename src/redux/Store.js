@@ -1,7 +1,8 @@
 const initialUser = {
-  user: { firstName: "", lastName: "", userId: "", image: "" },
+  user: { firstName: "", lastName: "", userId: "", image: "", email:"", about:"", playing:"", words:"" },
   sales:[],
-  category:["Keyboards", "Guitar","Bass","Drums / Percussions","Wind"]
+  salesCategory:["Keyboards", "Guitar","Bass","Drums / Percussions","Wind"],
+  articleCategory:["Best Practice","Recording", "Ear Training","Technique", "Teaching", "Musical Instruments","Beginners", "Set-Up"]
 };
 
 const setUser = (state = initialUser, action) => {

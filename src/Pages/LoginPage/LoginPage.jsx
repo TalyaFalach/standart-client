@@ -15,15 +15,16 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await login(email, password)
-      .then((data) => dispatch({ type: "SET_USER_DATA", payload: { ...data } }))
+    .then((data) => dispatch({ type: "SET_USER_DATA", payload: { ...data } }))
+  
       
       .then(() => navigate("/userprofile"))
       .catch(() => alert("Please Try To Login Again"));
-      console.log("res", res);
+      
   };
 
   return (
-    <div className="h-100 bg-dark text-light">
+    <div className=" bg-dark text-light" >
       <NavBarComponent />
       <hr className=" mx-auto" />
      

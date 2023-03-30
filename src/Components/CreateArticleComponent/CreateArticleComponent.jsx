@@ -11,16 +11,8 @@ import {
 
 const CreateArticleComponent = () => {
   const user = useSelector((state) => state.user);
-  const [categories, setCategories] = useState([
-    "Best Practice",
-    "Recording",
-    "Ear Training",
-    "Technique",
-    "Teaching",
-    "Musical Instruments",
-    "Beginners",
-    "set-up",
-  ]);
+  const articleCategory = useSelector((state) => state.articleCategory);
+  
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -75,7 +67,7 @@ const CreateArticleComponent = () => {
               }
             >
               <option disabled>category</option>
-              {categories.map((c, index) => {
+              {articleCategory.map((c, index) => {
                 return (
                   <option key={index} value={c}>
                     {c}

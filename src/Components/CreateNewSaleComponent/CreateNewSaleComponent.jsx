@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 
 const CreateSaleComponent = () => {
   const user = useSelector((state) => state.user);
-  const category = useSelector((state) => state.category);
+  const salesCategory = useSelector((state) => state.salesCategory);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -106,7 +106,7 @@ const CreateSaleComponent = () => {
               <option disabled value="category">
                 category
               </option>
-              {category.map((c, index) => {
+              {salesCategory.map((c, index) => {
                 return (
                   <option key={index} value={c}>
                     {c}

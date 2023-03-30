@@ -12,6 +12,7 @@ const CurrentFullPostComponent = ({ image, post }) => {
       <div style={{cursor:'pointer'}} className="lead shadow h-50" onClick={handleShow}>
         {" "}
         Click to read full post
+        {console.log(post)}
       </div>
       
       <hr />

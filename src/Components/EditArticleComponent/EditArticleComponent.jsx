@@ -33,7 +33,7 @@ const EditArticleComponent = ({ article }) => {
           X
         </span>
         <h5>Edit Your Post Here</h5>
-
+        <label className="text-light">Title</label>
         <input
           type="text"
           defaultValue={article.title}
@@ -41,7 +41,18 @@ const EditArticleComponent = ({ article }) => {
             setEditArticle({ ...editArticle, title: e.target.value })
           }
         />
+        <label className="text-light">image</label>
+
+        <input
+          type="text"
+          defaultValue={article.image ? article.image : null}
+          onChange={(e) =>
+            setEditArticle({ ...editArticle, title: e.target.value })
+          }
+        />
         <br />
+        <label className="text-light">Text</label>
+
         <textarea
           style={{ resize: "none", height: "250px" }}
           defaultValue={article.text}

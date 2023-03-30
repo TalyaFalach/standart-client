@@ -15,6 +15,9 @@ const CreateAccountPage = () => {
     image: defaultUserImg,
     password: "",
     confirmPassword: "",
+    about:"",
+    words:"",
+    playing:""
   });
 
   const handleSubmit = async (e) => {
@@ -27,7 +30,7 @@ const CreateAccountPage = () => {
   return (
     <div className="bg-dark">
       <NavBarComponent />
-      <hr className=" mx-auto text-light"  />
+      <hr className=" mx-auto text-light" />
       <hr bg="light" />
       <Container className="bg-dark  text-light border rounded w-75 mx-auto p-3 m-3">
         <h1>Sign Up</h1>
@@ -112,13 +115,37 @@ const CreateAccountPage = () => {
             </Col>
           </Row>
           <Row>
-            <Col>
-              <Button className="btn-success w-50 m-3" type="submit">
-                Sign Up
-              </Button>
+            <Col sm={4}>
+              <Form.Control
+                type="text"
+                placeholder="instruments"
+                onChange={(e) =>
+                  setNewUser({ ...newUser, playing: e.target.value })
+                }
+              />
+            </Col>
+            <Col sm={8}>
+              <div style={{ whiteSpace: "pre-wrap" }}>
+                <textarea
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, about: e.target.value })
+                  }
+                  placeholder=" About yourself"
+                  style={{
+                    whiteSpace: "pre-wrap",
+                    
+                    resize: "none",
+                  }}
+                />
+              </div>
             </Col>
           </Row>
-          <p>We will not share your personal data with anyone else</p>
+          <Col>
+            <Button className="btn-success w-50 m-3" type="submit">
+              Sign Up
+            </Button>
+            <p>We will not share your personal data with anyone else</p>
+          </Col>
         </form>
       </Container>
     </div>

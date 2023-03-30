@@ -17,7 +17,7 @@ import JobsPage from "./Pages/JobsPage/JobsPage";
 
 function App() {
   return (
-    <div className="App">
+    <div style={{height:""}} className="App">
       <ToastContainer />
       <Routes>
         <Route path="/" element={<HomePage />} />
