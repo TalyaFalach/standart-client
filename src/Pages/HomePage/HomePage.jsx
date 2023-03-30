@@ -1,10 +1,9 @@
 
 import NavBarComponent from "../../Components/NavBar/NavBarComponent";
-import Card1 from "../../Components/Cards/ConnectionCardComponent";
+import Card1 from "../../Components/Cards/JobsCardComponent";
 import Card2 from "../../Components/Cards/RecommendationsCardComponent";
 import Card3 from "../../Components/Cards/SaleCardComponent";
 import Card4 from "../../Components/Cards/ShareCardComponent";
-
 import React from "react";
 import img from "./../../Images/kahal2.jpg";
 import { Container, Row, Col, Card } from "react-bootstrap";
@@ -32,15 +31,16 @@ function HomePage() {
                   A social network for musicians
                 </h3>{" "}
                 <p className="fw-lighter text-light lead">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Quisquam veritatis vero nobis maiores facere! Fuga accusantium
-                  voluptatum adipisci distinctio deserunt?
+                  standart is designed to accommodate the needs of every
+                  musician, in one place. 
+                  Viewing the site's content is free To share your own posts,
+                  you can register and log in
                 </p>
               </div>
             </div>
           </Col>
         </Row>
-        <Row style={{backgroundColor:"black"}}>
+        <Row style={{ backgroundColor: "black" }}>
           <Col sm={3}>
             <Card1 />
           </Col>

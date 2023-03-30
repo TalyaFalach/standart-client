@@ -1,5 +1,5 @@
 const initialUser = {
-  user: { firstName: "", lastName: "", userId: "", image: "", email:"", about:"", playing:"", words:"" },
+  user: { firstName: "", lastName: "", userId: "", image: "", email:"" },
   sales:[],
   salesCategory:["Keyboards", "Guitar","Bass","Drums / Percussions","Wind"],
   articleCategory:["Best Practice","Recording", "Ear Training","Technique", "Teaching", "Musical Instruments","Beginners", "Set-Up"]
@@ -13,9 +13,10 @@ const setUser = (state = initialUser, action) => {
     case "SET_SALES": {
       return { ...state, sales:  [...action.payload]  };
     }
-    case "COUNT_LIKES": {
-      return { ...state, sales:  [...action.payload]  };
+    case "LOGOUT":{
+      return {...state, user:{...action.payload}}
     }
+   
 
     default:
       return state;

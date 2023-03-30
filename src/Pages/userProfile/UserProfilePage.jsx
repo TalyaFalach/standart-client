@@ -25,28 +25,25 @@ const UserProfilePage = () => {
 
   return (
     <div style={{ height: "100vh" }} className="bg-light">
-      <div className="d-flex justify-content-between bg-light mb-3">
-        <hr />
-        <NavBarLoginComponent />
-      </div>
-      <Row className="mb-1 bg-light ">
-        <Col></Col>
-        <Col>
-          <EditProfileComponent />
-        </Col>
-      </Row>
-      <div className="border p-2 bg-light ">
+      <NavBarLoginComponent />
+
+      <div className="border p-1 bg-light ">
         <div className="lead">
           Hello, {user.firstName + " " + user.lastName}
         </div>{" "}
         <br />
         <p className="fw-lighter">
-          {" "}
+          
           This is your private page, from here you can see the posts you have
-          uploaded so far, and edit or delete them, enjoy. 
-         
+          uploaded so far, and edit or delete them, enjoy.
         </p>
       </div>
+      <Row className="mt-2 bg-light ">
+        <Col></Col>
+        <Col>
+          <EditProfileComponent />
+        </Col>
+      </Row>
 
       <Row className="bg-light ">
         {userArticles.map((a, index) => {

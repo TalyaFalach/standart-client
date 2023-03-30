@@ -13,19 +13,31 @@ const CreateAccountPage = () => {
     email: "",
     birthDate: "",
     image: defaultUserImg,
+    imageFile: null,
     password: "",
     confirmPassword: "",
-    about:"",
-    words:"",
-    playing:""
+    about: "",
+    words: "",
+    playing: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signUp(newUser)
+    const formData = new FormData();
+    formData.append("firstName", newUser.firstName);
+    formData.append("lastName", newUser.lastName);
+    formData.append("email", newUser.email);
+    formData.append("birthDate", newUser.birthDate);
+    formData.append("imageFile", newUser.imageFile);
+    formData.append("password", newUser.password);
+    formData.append("confirmPassword", newUser.confirmPassword);
+
+    console.log(formData);
+    await signUp(formData)
       .then(() => successToast(toast, "You are signed up! now login"))
       .catch((err) => console.log(err))
       .catch(() => errorToast(toast, "please check all fields and try again"));
+
   };
   return (
     <div className="bg-dark">
@@ -76,10 +88,10 @@ const CreateAccountPage = () => {
             <Col>
               <Form.Control
                 className="m-2"
-                type="text"
+                type="file"
                 placeholder="Image"
                 onChange={(e) =>
-                  setNewUser({ ...newUser, image: e.target.value })
+                  setNewUser({ ...newUser, imageFile: e.target.files[0] })
                 }
               />
             </Col>
@@ -114,32 +126,7 @@ const CreateAccountPage = () => {
               />
             </Col>
           </Row>
-          <Row>
-            <Col sm={4}>
-              <Form.Control
-                type="text"
-                placeholder="instruments"
-                onChange={(e) =>
-                  setNewUser({ ...newUser, playing: e.target.value })
-                }
-              />
-            </Col>
-            <Col sm={8}>
-              <div style={{ whiteSpace: "pre-wrap" }}>
-                <textarea
-                  onChange={(e) =>
-                    setNewUser({ ...newUser, about: e.target.value })
-                  }
-                  placeholder=" About yourself"
-                  style={{
-                    whiteSpace: "pre-wrap",
-                    
-                    resize: "none",
-                  }}
-                />
-              </div>
-            </Col>
-          </Row>
+          
           <Col>
             <Button className="btn-success w-50 m-3" type="submit">
               Sign Up

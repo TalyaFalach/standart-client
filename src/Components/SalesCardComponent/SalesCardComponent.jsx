@@ -3,9 +3,10 @@ import { Card, Col, NavDropdown, Row, Stack } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getById } from "./../../utils";
 import EditSaleComponent from "../EditSaleComponent/EditSaleComponent";
-import CurrentPostComponent from "../CurrentPostCommentsComponent/CurrentPostCommentsComponent";
+import CurrentPostComponent from "./../CurrentPostComponent/CurrentPostComponent";
 import AddNewCommentComponent from "../AddNewCommentComponent/AddNewCommentComponent";
 import DeletePostComponent from "../DeletePostComponent/DeletePostComponent";
+const imgUrl = `http://localhost:8000`
 
 const SalesCardComponent = ({ prod, isOpen }) => {
   const user = useSelector((state) => state.user);
@@ -62,7 +63,7 @@ const SalesCardComponent = ({ prod, isOpen }) => {
             </div>
             <div>
               <img
-                src={userProdData.image}
+                src={`${imgUrl}/api/images/${user.image}`}
                 className="rounded float-end rounded-circle"
                 alt="user"
                 style={{ maxHeight: "30px" }}
@@ -72,8 +73,8 @@ const SalesCardComponent = ({ prod, isOpen }) => {
         </Card.Header>
         <Col>
           <img
-            src={prod.photo}
-            className="h-100"
+            src={`${imgUrl}/api/images/${prod.image}`}
+            className="h-75 w-100 rounded"
             alt={prod.productName}
             class="img-thumbnail"
           />
@@ -107,7 +108,7 @@ const SalesCardComponent = ({ prod, isOpen }) => {
                 <AddNewCommentComponent postId={prod._id} />
               </Col>
               <Col>
-                <CurrentPostComponent postId={prod._id} image={prod.photo} />
+                <CurrentPostComponent postId={prod._id} image={prod.image} />
               </Col>
             </Row>
           </Card.Body>
@@ -119,62 +120,3 @@ const SalesCardComponent = ({ prod, isOpen }) => {
 
 export default SalesCardComponent;
 
-//<CurrentPostComponent />
-
-// <Card
-//       onClick={handleOpenPost}
-//       style={{ width: "20rem", minHeight: "35rem", maxHeight: "50rem" }}
-//       className="shadow m-3 my-card"
-//     >
-//       {deleteSale ? <DeleteSaleComponent prodId={prod._id} /> : null}
-//       {editSale ? <EditSaleComponent prod={prod} /> : null}
-//       {isUserProduct ? (
-//         <NavDropdown
-//           className="d-flex justify-content-start p-1 h6"
-//           title="Options"
-//         >
-//           <NavDropdown.Item
-//             href="#action/3.1"
-//             onClick={() => setEditSale(!editSale)}
-//           >
-//             Edit
-//           </NavDropdown.Item>
-//           <NavDropdown.Item
-//             href="#action/3.2"
-//             onClick={() => setDeleteSale(!deleteSale)}
-//           >
-//             Delete
-//           </NavDropdown.Item>
-//         </NavDropdown>
-//       ) : null}
-//       <Card.Img variant="top" src={prod.photo} style={{ height: "17rem" }} />
-//       <Card.Body>
-//         <Card.Title>{prod.productName}</Card.Title>
-//         <Card.Subtitle className="mb-2 text-muted">
-//           {prod.price}$
-//         </Card.Subtitle>
-//         <Card.Text>{prod.description}</Card.Text>
-//       </Card.Body>
-// <ListGroup variant="flush">
-//   <ListGroup.Item>{prod.contact}</ListGroup.Item>
-//   <ListGroup.Item>{prod.city}</ListGroup.Item>
-// </ListGroup>
-// <Card.Footer className="text-muted">
-//   <Stack direction="horizontal" gap={4}>
-//     <div className="">{prod.date}</div>
-//     <div className="fw-bold ms-auto">
-//       {prod.firstName + " " + prod.lastName}
-//     </div>
-//     <div className="">
-//       <img
-//         src={userProdData.image}
-//         className="rounded float-end rounded-circle"
-//         alt="user"
-//         style={{ maxHeight: "30px" }}
-//       />
-//     </div>
-//   </Stack>
-
-// </Card.Footer>
-//     </Card>
-//     {showComments ? <CommentsComponent prod={prod} path="sales" /> : null}

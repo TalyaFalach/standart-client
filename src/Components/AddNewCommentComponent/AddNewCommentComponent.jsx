@@ -35,11 +35,27 @@ const AddNewCommentComponent = ({ postId }) => {
     <>
       <input
         placeholder="Add Comment"
-        onChange={(e) => setNewComment(e.target.value)} className="mb-3"
+        onChange={(e) => setNewComment(e.target.value)}
+        className="mb-3"
       />{" "}
-      <button className="btn-success btn" onClick={handleNewComment}>
-        Send
-      </button>
+      {user.userId !== "" ? (
+        <button className="btn-success btn" onClick={handleNewComment}>
+          Send
+        </button>
+      ) : (
+        <div>
+          <span className="text-danger">
+            You will not be able to comment if you are not logged in{" "}
+          </span> <br/>
+          <button
+            disabled
+            className="btn-success btn"
+            onClick={handleNewComment}
+          >
+            Send
+          </button>
+        </div>
+      )}
     </>
   );
 };

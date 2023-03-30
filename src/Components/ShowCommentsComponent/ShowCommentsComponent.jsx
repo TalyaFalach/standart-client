@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { getById, getPostComments } from "./../../utils";
 import "./ShowCommentsComponent.css";
-
+const imgUrl = "http://localhost:8000/api/images";
 const ShowCommentsComponent = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [userComments, setUserComments] = useState({});
@@ -11,7 +11,7 @@ const ShowCommentsComponent = ({ postId }) => {
     const fetchData = async () => {
       const res = await getPostComments(postId);
       setComments([...res.data.data]);
-console.log(postId);
+      console.log(postId);
       console.log("comments", res.data.data);
     };
     fetchData();
@@ -19,7 +19,7 @@ console.log(postId);
 
   return (
     <>
-    <hr/>
+      <hr />
       {comments.length > 0 ? (
         <ListGroup variant="flush" className="wrapper border-danger bg-light">
           {" "}
@@ -34,19 +34,18 @@ console.log(postId);
                       width: "30px",
                       borderRadius: "90px",
                     }}
-                    src={comment.userImage}
+                    src={`${imgUrl}/${comment.userImage}`}
                     alt="user"
                   />
                   <span className="fw-bolder p-2">
                     {comment.userFirstName + " " + comment.userLastName}
                   </span>
                 </div>
-                <hr />
 
                 <div className="d-flex justify-content-center">
                   {comment.comment}
                 </div>
-                
+
                 <hr />
               </ListGroup.Item>
             );

@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import { NavDropdown, Stack } from "react-bootstrap";
+import { Col, NavDropdown, Row, Stack } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useSelector } from "react-redux";
+// import CurrentPostComponent from "../CurrentPostCommentsComponent/CurrentPostCommentsComponent";
+import DeletePostComponent from "../DeletePostComponent/DeletePostComponent";
 import EditRcommendationComponent from "../EditRcommendationComponent/EditRcommendationComponent";
-
-const RecommendationCardCompnent = ({ post }) => {
+import AddNewCommentComponent from "./../AddNewCommentComponent/AddNewCommentComponent";
+import ShowCommentsComponent from "./../ShowCommentsComponent/ShowCommentsComponent";
+import CurrentPostComments from "../CurrentPostComponent/CurrentPostComponent";
+const imgUrl = "http://localhost:8000";
+const RecommendationCardCompnent = ({ post, callback }) => {
   const user = useSelector((state) => state.user);
-
   const [isUserPost, setIsUserPost] = useState(false);
   const [editPost, setEditPost] = useState(false);
   const [deletePost, setDeletePost] = useState(false);
@@ -16,12 +20,16 @@ const RecommendationCardCompnent = ({ post }) => {
       setIsUserPost(true);
     }
   }, []);
+
   return (
     <Card
-      style={{ width: "20rem" }}
+      style={{ width: "22rem", minHeight: "22rem" }}
       className="p-2 fw-lighter shadow bg-dark text-light"
     >
-    {editPost ? <EditRcommendationComponent post={post}/>: null}
+      {editPost ? <EditRcommendationComponent post={post} /> : null}
+      {deletePost ? (
+        <DeletePostComponent postId={post._id} path="recommendations" />
+      ) : null}
       <Stack direction="horizontal" gap={4}>
         <div className="">{post.date}</div>
 
@@ -46,7 +54,7 @@ const RecommendationCardCompnent = ({ post }) => {
         </div>
         <div>
           <img
-            src={post.userImage}
+            src={`${imgUrl}/api/images/${post.userImage}`}
             className="rounded float-end rounded-circle"
             alt="user"
             style={{ maxHeight: "30px" }}
@@ -60,6 +68,14 @@ const RecommendationCardCompnent = ({ post }) => {
 
         <Card.Text>{post.text}</Card.Text>
       </Card.Body>
+      <Row>
+        <Col>
+          <AddNewCommentComponent postId={post._id} />
+        </Col>
+        <Col>
+          <CurrentPostComments postId={post._id} image={post.image} />
+        </Col>
+      </Row>
     </Card>
   );
 };

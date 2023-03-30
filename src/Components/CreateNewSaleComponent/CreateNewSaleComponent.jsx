@@ -17,6 +17,7 @@ const CreateSaleComponent = () => {
   const salesCategory = useSelector((state) => state.salesCategory);
 
   const [show, setShow] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [product, setProduct] = useState({
@@ -28,16 +29,31 @@ const CreateSaleComponent = () => {
     price: "",
     contact: "",
     description: "",
-    photo: "",
+    image: "",
+    imageFile: null,
     userId: user.userId,
     date: getTodayDate(),
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createNewSale(product)
+    const formData = new FormData();
+    formData.append("firstName", product.firstName);
+    formData.append("lastName", product.lastName);
+    formData.append("category", product.category);
+    formData.append("city", product.city);
+    formData.append("productName", product.productName);
+    formData.append("price", product.price);
+    formData.append("contact", product.contact);
+    formData.append("description", product.description);
+    formData.append("imageFile", product.imageFile);
+    formData.append("userId", product.userId);
+    formData.append("date", product.date);
+    await createNewSale(formData)
       .then(() => successToast(toast, "created"))
+      .then(() => setIsClicked(!isClicked))
       .catch(() => errorToast(toast, "Oops, please try again"));
+    console.log(formData);
   };
   return (
     <>
@@ -74,9 +90,9 @@ const CreateSaleComponent = () => {
             <br />
             <input
               onChange={(e) =>
-                setProduct({ ...product, photo: e.target.value })
+                setProduct({ ...product, imageFile: e.target.files[0] })
               }
-              type="text"
+              type="file"
               className="m-1"
               placeholder="Photo (url)"
             />{" "}

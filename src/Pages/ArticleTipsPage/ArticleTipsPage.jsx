@@ -7,7 +7,6 @@ import CreateArticleComponent from "./../../Components/CreateArticleComponent/Cr
 import { getAll } from "./../../utils";
 import PageTitle from "./../../Components/PageTitle/PageTitle";
 
-
 const ArticleTipsPage = () => {
   const articleCategory = useSelector((state) => state.articleCategory);
   const [searchValue, setSearchValue] = useState("All");
@@ -34,19 +33,15 @@ const ArticleTipsPage = () => {
   return (
     <Container>
       <NavBarLoginComponent />
-      
-       
-        <PageTitle
-          title="Article And Tips"
-          subTitle=" Here you can share new and exciting information you have discovered on
+
+      <PageTitle
+        title="Article And Tips"
+        subTitle=" Here you can share new and exciting information you have discovered on
           any topic you choose, from the cultivation of your musical
           instruments, to new techniques you have discovered in playing.
           Anything you feel is necessary information for any player"
-        />
-      
-    
+      />
 
-  
       <Row>
         <Col>
           <Form.Select size="l" onChange={handleSearch}>
@@ -65,45 +60,6 @@ const ArticleTipsPage = () => {
           <CreateArticleComponent />
         </Col>
       </Row>
-
-      {/* <Row>
-        {searchValue !== "All" ? (
-          <Col sm={4}>
-            {filteredArticles.map((article, index) => {
-              return <ArticlesCardComponent article={article} key={index} />;
-            })}
-          </Col>
-        ) : (
-          <Col sm={4}>
-            {articles.map((article, index) => {
-              return <ArticlesCardComponent article={article} key={index} />;
-            })}
-          </Col>
-        )}
-      </Row> */}
-      {/* <Row>
-        {searchValue !== "All" ? (
-          <div>
-            {filteredArticles.map((article, index) => {
-              return (
-                <Col key={index} className="mx-auto">
-                  <ArticlesCardComponent article={article} />
-                </Col>
-              );
-            })}
-          </div>
-        ) : (
-          <div>
-            {articles.map((article, index) => {
-              return (
-                <Col className="mx-auto" key={index}>
-                  <ArticlesCardComponent article={article} />
-                </Col>
-              );
-            })}
-          </div>
-        )}
-      </Row> */}
 
       <Row>
         {searchValue !== "All"

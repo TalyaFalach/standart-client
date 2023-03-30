@@ -47,7 +47,7 @@ const CreateArticleComponent = () => {
       </Button>
 
       <Offcanvas
-        className="h-100 bg-dark text-light lead"
+        className="h-100 lead"
         show={show}
         placement="top"
         onHide={handleClose}
